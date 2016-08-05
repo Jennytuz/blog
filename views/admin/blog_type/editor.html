@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        {{include '../../shared/_header'}}
+</head>
+
+<body class="no-skin">
+    {{include '../../shared/_navbar'}}
+
+    <div class="main-container" id="main-container">
+        <script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+        <div id="sidebar" class="sidebar                  responsive">
+            <script type="text/javascript">
+					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+				</script>
+
+             {{include '../../shared/_sidebar'}}
+            <!-- /.sidebar-shortcuts -->
+
+            <ul class="nav nav-list"><!-- 待改 -->
+                <li class="">
+                    <a href="/admin/adminUser/1">
+                        <i class="menu-icon fa fa-tachometer"></i>
+                        <span class="menu-text"> 管理员信息 </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="active">
+                    <a href="/admin/blogType/1" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text">
+								博客分类
+							</span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="/admin/blog/1" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-list"></i>
+                        <span class="menu-text"> 博客列表 </span>
+
+                    </a>
+                </li>
+            </ul>
+            <!-- /.nav-list -->
+
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+
+            <script type="text/javascript">
+					try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+				</script>
+        </div>
+
+        <div class="main-content">
+            <div class="main-content-inner">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="#">博客管理系统</a>
+                        </li>
+                        <li class="active">博客分类</li>
+                    </ul>
+                    <!-- /.breadcrumb -->
+
+                    <div class="nav-search" id="nav-search">
+                        <form class="form-search">
+                            <span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+                        </form>
+                    </div>
+                    <!-- /.nav-search -->
+                </div>
+
+                <div class="page-content">
+                    {{include '../../shared/_setting'}}
+                    <!-- /.ace-settings-container -->
+
+                    <div class="page-header">
+                        <h1>
+                            博客分类
+                            <small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									新增数据
+								</small>
+                        </h1>
+                    </div>
+                    <!-- /.page-header -->
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            <form method="post" action="/admin/blogType/editor/{{data.id}}" id="mainForm" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="title">分类名:</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control" name="title" id="title" value="{{data.title}}"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="order_num">序号:</label>
+                                    <div class="col-sm-10"><input type="text" class="form-control" name="order_num" id="order_num" value="{{data.order_num}}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-info">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!-- PAGE CONTENT ENDS -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.page-content -->
+            </div>
+        </div>
+        <!-- /.main-content -->
+         {{include '../../shared/_footer'}}
+       
+    </div>
+    <!-- /.main-container -->
+
+    <!-- basic scripts -->
+
+    <!--[if IE]>
+<script src="/assets/js/jquery.1.11.1.min.js"></script>
+<![endif]-->
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+			window.jQuery || document.write("<script src='/assets/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery1x.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+    <script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <!--[if lte IE 8]>
+		  <script src="/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+    <!-- ace scripts -->
+    <script src="/assets/js/ace-elements.min.js"></script>
+    <script src="/assets/js/ace.min.js"></script>
+
+    <!-- inline scripts related to this page -->
+    <script src="/datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="/datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script src="/lib/jquery.html5uploader.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="/javascripts/common.js"></script>
+
+</body>
+
+</html>

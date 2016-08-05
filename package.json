@@ -1,0 +1,17 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./app"
+  },
+  "dependencies": {
+    "art-template": "^3.0.3",
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "express": "~4.13.4",
+    "formidable": "^1.0.17",
+    "mongoose": "^4.5.8",
+    "multer": "^1.1.0"
+  }
+}
