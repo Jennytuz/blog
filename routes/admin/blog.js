@@ -1,4 +1,5 @@
 var Blog = require('../../models/Blog')
+var BlogType = require('../../models/BlogType')
 var express = require('express');
 var router = express.Router();
 var moment = require('moment');
@@ -20,14 +21,22 @@ router.get('/:page', function(req, res, next) {
             '$regex': `.*?${title}.*?`
         }
     }
-
-
-    Blog.dal.getListByPage(filter, page, pageSize, function(data) {
+///////待改
+    BlogType.dal.findByFilter({},function(typeData){
+        Blog.dal.getListByPage(filter, page, pageSize, function(data) {
+        console.log(data)
+        data.data = data.data.map(function(item){
+            item.typeName = typeData.filter({_id:item.type}).name
+            return item
+        })
+        
         data.title = "博客列表管理"
         data.query = req.query
         res.render('admin/blog/index', data)
     })
 
+    })
+    
 
 });
 

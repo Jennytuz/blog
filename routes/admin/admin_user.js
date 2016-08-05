@@ -1,7 +1,7 @@
 var AdminUser = require('../../models/AdminUser')
 var express = require('express');
 var router = express.Router();
-
+var moment = require('moment');
 ////引入crypto模块
 const crypto = require('crypto')
 
@@ -11,8 +11,7 @@ const crypto = require('crypto')
 //////列表页
 router.get('/:page', function(req, res, next) {
     //res.send('respond with a resource');
-    //
-     var page = req.params.page;
+    var page = req.params.page;
     page = page || 1;
 	page = parseInt(page);
     var pageSize = 5;
