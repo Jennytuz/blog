@@ -7,6 +7,12 @@ var router = express.Router();
 router.get('/:page', function(req, res, next) {
     //res.send('respond with a resource');
     //
+     var page = req.params.page;
+    page = page || 1;
+	page = parseInt(page);
+    var pageSize = 8;
+    var filter = {}
+
     var filter = {}
 
     var title = req.query.title
@@ -18,8 +24,8 @@ router.get('/:page', function(req, res, next) {
     }
 
 
-    BlogType.dal.getListByPage(filter, 1, 10, function(data) {
-        data.title = "管理员信息管理"
+    BlogType.dal.getListByPage(filter, page, pageSize, function(data) {
+        data.title = "博客分类管理"
         data.query = req.query
         res.render('admin/blog_type/index', data)
     })
@@ -52,7 +58,12 @@ router.get('/editor/:id', function(req, res, next) {
 //////编辑表单提交
 router.post('/editor/:id', function(req, res, next) {
     var model = req.body;
-
+    if(!!req.params.id){
+        model.create_time = Date();
+    }
+    else{
+        model.update_time = Date();
+    }
     BlogType.dal.update(req.params.id, model, true, (data) => {
         if (data) {
             //res.json(data)

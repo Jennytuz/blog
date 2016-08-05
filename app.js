@@ -130,8 +130,12 @@ app.get('/', initApp, (req, res) => {
 	res.send('app启动');
 	//res.redirect('/student/list/1');
 })
-
+////文件上传
 app.use('/common', require('./routes/common/common'))
+//////kindeditor测试部分内容
+app.use('/',require('./routes/common/kindeditor/demo'));
+/////kindeditor文件上传部分代码
+app.use('/common/kindeditor', require('./routes/common/kindeditor/index'));
 app.use('/admin/adminUser/', require('./routes/admin/admin_user'))
 app.use('/admin/blogType',require('./routes/admin/blog_type'))
 app.use('/admin/blog',require('./routes/admin/blog'))

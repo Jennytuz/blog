@@ -12,6 +12,12 @@ const crypto = require('crypto')
 router.get('/:page', function(req, res, next) {
     //res.send('respond with a resource');
     //
+     var page = req.params.page;
+    page = page || 1;
+	page = parseInt(page);
+    var pageSize = 5;
+    var filter = {}
+
     var filter = {}
 
     var user_name = req.query.user_name
@@ -29,7 +35,7 @@ router.get('/:page', function(req, res, next) {
         };
     }
 
-    AdminUser.dal.getListByPage(filter, 1, 10, function(data) {
+    AdminUser.dal.getListByPage(filter, page, pageSize, function(data) {
         data.title = "管理员信息管理"
         data.query = req.query
         res.render('admin/admin_user/index', data)
@@ -63,7 +69,13 @@ router.get('/editor/:id', function(req, res, next) {
 //////编辑表单提交
 router.post('/editor/:id', function(req, res, next) {
     var model = req.body;
-
+    //添加创建时间或更新时间
+    if(!!req.params.id){
+        model.create_time = Date();
+    }
+    else{
+        model.update_time = Date();
+    }
     ////测试MD5加密功能
     const md5 = crypto.createHash('md5')
 
