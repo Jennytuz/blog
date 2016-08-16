@@ -1,7 +1,7 @@
 var db = require('./BaseModel')
 
 //////设置模型名字
-const TableName = "Blog"
+const TableName = "Show"
 
 var dal = new db.dal(TableName)//Object.create(db.dal);
 // dal.setTableName(TableName)

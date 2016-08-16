@@ -3,13 +3,6 @@ var db = require('./BaseModel')
 //////设置模型名字
 const TableName = "AdminUser"
 
-
-
-// db.dal.setTableName(TableName)
-
-//var adminUser = new db.dal(TableName)
-
-
 var dal = new db.dal(TableName)//Object.create(db.dal);
 // dal.setTableName(TableName)
 

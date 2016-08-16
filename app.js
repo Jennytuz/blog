@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var fs = require('fs');
 
 var app = express();
 
@@ -72,6 +72,8 @@ app.post('/admin/login',(req,res)=>{
 			console.log(password)
 			console.log(data.pwd)
 			if(password == data.pwd){
+				/////登陆成功后把id写入cookie
+                ///此处写cookie的path参数 表示cookie的作用范围
 				res.cookie('user',data.id,{path:'/'})
 				// res.redirect('/admin/adminUser/1')
 				res.json({status:"y",msg:"登陆成功"})
@@ -86,6 +88,17 @@ app.post('/admin/login',(req,res)=>{
 		}
 	})
 })
+app.get('/admin/validateUser', (req, res) => {
+    AdminUser.dal.findOneByFilter({ user_name: req.query.user_name }, function (data) {
+        console.log(data)
+        if (data) {
+            res.send('false')
+        }
+        else {
+            res.send('true')
+        }
+    });
+})
 
 app.get('/admin/getLoginedUser',(req,res)=>{
 	AdminUser.dal.getModelById(req.cookies.user,function(data){
@@ -98,9 +111,6 @@ app.get('/admin/getLoginedUser',(req,res)=>{
 		}
 	})
 })
-
-
-
 
 /**
  * 通过此方法判断是访问的管理后台目录,在此处做用户是否登录的权限判断
@@ -139,7 +149,12 @@ app.use('/common/kindeditor', require('./routes/common/kindeditor/index'));
 app.use('/admin/adminUser/', require('./routes/admin/admin_user'))
 app.use('/admin/blogType',require('./routes/admin/blog_type'))
 app.use('/admin/blog',require('./routes/admin/blog'))
+app.use('/show_type',require('./routes/show/show_type'))
+app.use('/show_blog',require('./routes/show/show_blog'))
+
+var AdminUser = require('./models/AdminUser')
+
 
 app.listen(3000, (req, res) => {
-	console.log('服务器运行中。。。')
+	console.log('服务器运行中。。。3000')
 })
