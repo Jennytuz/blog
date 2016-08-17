@@ -116,7 +116,6 @@
                                             <th>编号</th>
                                             <th>分类名</th>
                                             <th>排序号</th>
-                                            <th>创建时间</th>
                                             <th>操作</th>
                                         </tr>
                                         {{each data}}
@@ -124,7 +123,6 @@
                                             <td>{{$index+1}}</td>
                                             <td>{{$value.title}}</td>
                                             <td>{{$value.order_num}}</td>
-                                            <td>{{$value.create_time}}</td>
                                             <td>
                                                 <a href="/admin/blogType/editor/{{$value.id}}" class="btn btn-xs btn-info">修改</a>
                                                 <button id="deleteBtn" class="btn btn-xs btn-danger" onclick="deleteFun('{{$value.id}}')">删除</button>
